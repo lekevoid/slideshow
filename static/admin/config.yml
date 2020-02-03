@@ -1,0 +1,59 @@
+backend:
+  name: github
+  repo: broadsignmarketing/broadsign_ace
+  branch: master # Branch to update (optional; defaults to master)
+  squash_merges: true
+
+media_folder: "static/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "slides" # Used in routes, e.g., /admin/collections/blog
+    label: "Slides" # Used in the UI
+    folder: "slides" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+    - {label: "Layout", name: "layout", widget: "hidden", default: "blog"}
+    - {label: "Title", name: "title", widget: "string"}
+    - {label: "Publish Date", name: "date", widget: "datetime"}
+    - {label: "Body", name: "body", widget: "markdown"}
+    - label: "Images"
+      name: "gallery"
+      widget: "list"
+      field: {label: "Image", name: "thumbnail", widget: "image"}
+    - label: "Categories"
+      name: "categories"
+      widget: "object"
+      fields:
+      - label: "Products"
+        name: "products"
+        widget: "select"
+        multiple: true
+        required: false
+        options:
+        - {label: "Admin", value: "admin"}
+        - {label: "Old Slideshow", value: "old_slideshow"}
+        - {label: "CRUD", value: "crud"}
+        - {label: "Slideshow", value: "slideshow"}
+        - {label: "Envoy", value: "envoy"}
+        - {label: "Bright", value: "bright"}
+      - label: "Verticals"
+        name: "verticals"
+        widget: "select"
+        multiple: true
+        required: false
+        options:
+        - {label: "Airports", value: "airports"}
+        - {label: "Banking", value: "banking"}
+        - {label: "Casinos", value: "casinos"}
+        - {label: "Cinema", value: "cinema"}
+        - {label: "Gas Stations", value: "gas_stations"}
+        - {label: "Healthcare", value: "healthcare"}
+        - {label: "Hospitality", value: "hospitality"}
+        - {label: "Internal Comms", value: "internal_comms"}
+        - {label: "Outdoor", value: "outdoor"}
+        - {label: "Shopping Malls", value: "shopping_malls"}
+        - {label: "Smart Cities", value: "smart_cities"}
+        - {label: "Transit", value: "transit"}
+      - {label: "Programmatic", name: "programmatic", widget: "boolean", default: false}

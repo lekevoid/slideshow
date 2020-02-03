@@ -1,0 +1,224 @@
+.client_slide {
+	align-items: stretch;
+	background: linear-gradient(to bottom, #250000 0%, #03001C 50%, #011E26 100%);
+	display: flex;
+	flex-flow: row nowrap;
+	width: 100%;
+
+	.hero {
+		display: flex;
+		flex: 0 0 60%;
+		height: 100%;
+		max-width: 100vh;
+		opacity: 0;
+		overflow: hidden;
+		position: relative;
+		transition: opacity 1s ease-out 0.3s;
+		width: 60%;
+		z-index: 100;
+
+		.bg {
+			@include cover;
+			object-fit: cover;
+			object-position: center center;
+			opacity: 0;
+			transition: opacity 0.3s;
+			z-index: 1;
+
+			&.active {
+				opacity: 1;
+			}
+		}
+	}
+
+	.gallery {
+		align-items: center;
+		bottom: 10px;
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: flex-end;
+		opacity: 1;
+		pointer-events: all;
+		position: absolute;
+		right: 10px;
+		transition: opacity 0s linear 0s;
+		z-index: 1000;
+
+		.thumb {
+			background-color: #000;
+			background-size: cover;
+			border: 3px solid #000;
+			border-radius: 20px;
+			display: inline-block;
+			flex: 1 1 100%;
+			height: 72px;
+			margin-left: 10px;
+			max-height: 7vmax;
+			max-width: 9vmax;
+			opacity: 1;
+			overflow: hidden;
+			padding: 0;
+			pointer-events: all;
+			width: 90px;
+
+			&.active {
+				border-color: #7BC;
+			}
+
+			img {
+				height: 100%;
+				object-fit: cover;
+				object-position: center center;
+				opacity: 1;
+				width: 100%;
+			}
+		}
+	}
+
+	.content {
+		display: flex;
+		flex: 0 0 40%;
+		flex-flow: column nowrap;
+		font-size: 100px;
+		height: fit-content;
+		justify-content: center;
+		max-width: 40%;
+		opacity: 0;
+		padding: 6vh 3%;
+		position: relative;
+		transition: opacity 0.4s ease-out 0.4s;
+		user-select: none;
+		width: 40%;
+		z-index: 10;
+
+		h1 {
+			color: #83DBE7;
+			display: inline-block;
+			font-family: "Roboto Black", Arial Black, Helvetica, sans-serif;
+			font-size: .6em;
+			font-variant: small-caps;
+			left: -2px;
+			line-height: 80%;
+			margin: 0 0 30px;
+			position: relative;
+			text-transform: lowercase;
+			top: 0;
+			transform: none;
+			width: fit-content;
+		}
+
+		&>.text {
+			color: inherit;
+			display: flex;
+			flex-flow: column nowrap;
+			font-family: inherit;
+			font-size: inherit;
+			font-weight: inherit;
+
+			blockquote {
+				color: #83DBE7;
+				display: inline-block;
+				font-family: "Roboto Black", Arial Black, Helvetica, sans-serif;
+				font-size: .22em;
+				line-height: 120%;
+				margin: -20px 0 25px;
+
+				&>p {
+					color: inherit;
+					display: flex;
+					flex-flow: column nowrap;
+					font-family: inherit;
+					font-size: inherit;
+					font-size: 100%;
+					font-weight: inherit;
+					line-height: 140%;
+					margin: 0;
+					padding: 0;
+				}
+			}
+
+			h1 {
+				color: #83DBE7;
+				display: inline-block;
+				font-family: "Roboto Black", Arial Black, Helvetica, sans-serif;
+				font-size: .22em;
+				line-height: 120%;
+				margin: -20px 0 25px;
+				text-transform: uppercase;
+			}
+
+			h2 {
+				color: #FFF;
+				display: inline-block;
+				font-family: "Roboto Black", Arial Black, Helvetica, sans-serif;
+				font-size: .16em;
+				margin: 0 0 .5em;
+				text-transform: uppercase;
+			}
+
+			p {
+				color: #FFF;
+				display: inline-block;
+				font-family: "Roboto", Arial, Helvetica, sans-serif;
+				font-size: .13em;
+				line-height: 150%;
+				margin: 0 0 2.4em;
+
+				&.slides_count {
+					bottom: 15px;
+					margin: 0;
+					pointer-events: none;
+					position: absolute;
+					right: 15px;
+				}
+
+			}
+
+			&.products {
+				p {
+					text-transform: capitalize;
+				}
+			}
+		}
+	}
+}
+
+.section_slider.programmatic .client_slide .content>.text.products {
+	display: none;
+}
+
+.slick-slide.slick-active.slick-current .client_slide .content {
+	opacity: 1;
+}
+
+.section_slider.active .client_slide .hero {
+	opacity: 1;
+}
+
+@media screen and (max-height: 740px) {
+	.client_slide {
+
+		.hero,
+		.content {
+			flex: 0 0 50%;
+			max-width: 50%;
+			width: 50%;
+		}
+
+		.gallery .thumb {
+			max-width: 8vw;
+			width: 80px;
+		}
+
+		.content {
+			h1 {
+				font-size: 0.5em;
+				margin-bottom: 4vh;
+			}
+
+			&>.text p {
+				margin-bottom: 3vh;
+			}
+		}
+	}
+}
